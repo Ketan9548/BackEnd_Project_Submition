@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+import { Schema } from "mongoose";
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   role: { type: String, default: "User", enum: ["Admin", "Moderator", "User"] },
 });
-
 
 //password hash
 UserSchema.pre("save", async function (next) {
